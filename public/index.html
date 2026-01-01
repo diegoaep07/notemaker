@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ei">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hola Mundo</title>
+  </head>
+  <body>
+    Hola Mundo
+    <script>
+      const options = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          msg: "HOLA"
+        })
+      }
+      const test = async () => {
+        const res = await fetch('/test', options)
+      }
+
+      test()
+    </script>
+  </body>
+</html>
