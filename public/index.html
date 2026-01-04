@@ -1,25 +1,14 @@
 <!DOCTYPE html>
-<html lang="ei">
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hola Mundo</title>
   </head>
   <body>
-    Hola Mundo
-    <script>
-      const options = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          msg: "HOLA"
-        })
-      }
-      const test = async () => {
-        const res = await fetch('/test', options)
-      }
+    <input type="text" id="message" placeholder="Write a Message for the server">
+    <input type="submit" value="Send" id="send_btn">
 
-      test()
-    </script>
+    <script src="main.js"></script>
   </body>
 </html>

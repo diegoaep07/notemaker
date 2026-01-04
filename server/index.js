@@ -1,23 +1,16 @@
-// Limpiar toda la pantalla, antes de iniciar todo el servidor
-console.clear()
+import path from 'node:path'
+import express from 'express'
+import { env } from 'node:process'
 
-const express = require("express")
 const app = express()
 
 // Preparar el servidor para recibir peticiones JSON
 app.use(express.json())
 
 // Preparar el servidor para servir archivos estaticos de la carpeta public
-const path = require('path')
-app.use('/', express.static(path.join(__dirname , '../public/')))
+app.use('/', express.static(path.join(env.HOME_DIRNAME , 'public/')))
 
-// Peticion Get de prueba
-app.post('/test', (req, res) => {
-  console.log('TEST RECIBIDO')
-  console.log(req.body.msg)
-})
-
-const port = 8000
-app.listen(port, ()=>{
-  console.log(`Server Running on port ${port}`)
+// Lanzar el servidor
+app.listen(env.SERVER_PORT, ()=>{
+  console.log(`Server Running on port: ${env.SERVER_PORT}`)
 })
