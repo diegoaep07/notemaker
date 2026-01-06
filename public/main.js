@@ -1,18 +1,27 @@
-const sendMsg = async (msg) => {
+const reqBody = async (body_object) => {
   const options = {
-    method: 'post',
+    method: 'POST',
     headers: { 'Content-type': 'application/json' },
-    body: JSON.stringify({
-      message: msg
-    })
+    body: JSON.stringify(body_object)
   }
+}
 
-  try{
-    let res = await fetch('/message', options)
+let testing = {
+  'title': 'Testing',
+  'noteBody': 'Hola, esto es una nota de prueba'
+}
 
-    if(res.ok){
-      let response = await res.text()
-      console.log("Servidor: ", response)
+const newNote = async (noteObj) => {
+  const options = {
+    method: 'POST',
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify(noteObj)
+  }
+  try {
+    let serverReq = await fetch('/new', options)
+    if(serverReq.ok){
+      const response = serverReq.text()
+      console.log(response)
     }
   }
   catch(err){
@@ -20,8 +29,4 @@ const sendMsg = async (msg) => {
   }
 }
 
-const send_btn = document.getElementById('send_btn')
-send_btn.addEventListener('click', () => {
-  const message = document.getElementById('message').value
-  sendMsg(message)
-} )
+newNote(testing)
