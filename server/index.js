@@ -1,7 +1,7 @@
 import path from 'node:path'
 import express from 'express'
 import { env } from 'node:process'
-import { createNewNote } from './src/handleNotes.js'
+import { createNewNote, deleteNote } from './src/handleNotes.js'
 
 const app = express()
 
@@ -13,12 +13,17 @@ app.use('/', express.static(path.join(env.HOME_DIRNAME , 'public/')))
 
 // Peticion Post para crear una nota
 app.post('/new', (req, res) => {
-  console.log("Nueva Peticion para crear una nota")
-  console.log(req.body)
-
   createNewNote(req.body.title, req.body.noteBody)
   
   res.send('La nota ha sido creada con exito')
+})
+
+// Peticion Post para borrar una nota
+app.post('/delete', (req, res) => {
+  console.log("Nueva peticion para borrar una nota")
+  deleteNote(req.body.noteId)
+
+  res.send('La Nota ha sido borrada')
 })
 
 // Lanzar el servidor

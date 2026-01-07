@@ -7,8 +7,7 @@ const reqBody = async (body_object) => {
 }
 
 let testing = {
-  'title': 'Testing',
-  'noteBody': 'Hola, esto es una nota de prueba'
+  'noteId': 4
 }
 
 const newNote = async (noteObj) => {
@@ -18,7 +17,7 @@ const newNote = async (noteObj) => {
     body: JSON.stringify(noteObj)
   }
   try {
-    let serverReq = await fetch('/new', options)
+    let serverReq = await fetch('/delete', options)
     if(serverReq.ok){
       const response = serverReq.text()
       console.log(response)

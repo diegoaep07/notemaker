@@ -1,9 +1,16 @@
 import { writeFile } from 'node:fs'
 import { env } from 'node:process'
 import path from 'node:path'
+import { DatabaseSync } from 'node:sqlite'
+
+const db = new DatabaseSync(env.DB_DIRNAME)
 
 export const createNewNote = ( title, body ) => {
-  writeFile(path.join(env.SERVER_DIRNAME, `root/files/${title}.txt`), body, (err) => {
-    if(err) return 1
-  })
+  const insert = db.prepare(`INSERT INTO Notes (title, body) VALUES (?, ?)`)
+  insert.run(title, body)
+}
+
+export const deleteNote = (noteId) => {
+  const delete_note = db.prepare(`DELETE FROM Notes WHERE noteId=?`)
+  delete_note.run(noteId)
 }
