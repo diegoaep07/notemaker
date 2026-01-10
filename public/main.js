@@ -7,7 +7,7 @@ const reqBody = async (body_object) => {
 }
 
 let testing = {
-  'noteId': 4
+  'noteId': 5
 }
 
 const newNote = async (noteObj) => {
@@ -19,7 +19,7 @@ const newNote = async (noteObj) => {
   try {
     let serverReq = await fetch('/delete', options)
     if(serverReq.ok){
-      const response = serverReq.text()
+      const response = serverReq.json()
       console.log(response)
     }
   }

@@ -20,7 +20,6 @@ app.post('/new', (req, res) => {
 
 // Peticion Post para borrar una nota
 app.post('/delete', (req, res) => {
-  console.log("Nueva peticion para borrar una nota")
   deleteNote(req.body.noteId)
 
   res.send('La Nota ha sido borrada')
