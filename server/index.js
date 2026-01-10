@@ -1,7 +1,7 @@
 import path from 'node:path'
 import express from 'express'
 import { env } from 'node:process'
-import { createNewNote, deleteNote } from './src/handleNotes.js'
+import { createNewNote, deleteNote, getNoteContent } from './src/handleNotes.js'
 
 const app = express()
 
@@ -23,6 +23,13 @@ app.post('/delete', (req, res) => {
   deleteNote(req.body.noteId)
 
   res.send('La Nota ha sido borrada')
+})
+
+// Peticion Post para obtener el titulo y contenido de una nota especifica
+app.post('/getnote', (req, res) => {
+  const QUERY_RESPONSE = getNoteContent(req.body.noteId)
+
+  res.send({ 'body': QUERY_RESPONSE })
 })
 
 // Lanzar el servidor
