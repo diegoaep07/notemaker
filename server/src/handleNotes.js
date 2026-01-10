@@ -15,11 +15,11 @@ export const deleteNote = (noteId) => {
   DELETE_NOTE.run(noteId)
 }
 
-const getNoteContent = (noteId) => {
+export const getNoteContent = (noteId) => {
   const GET_NOTE_CONTENT = db.prepare('SELECT title, body FROM Notes WHERE noteId=?')
   const QUERY_RESULT = GET_NOTE_CONTENT.all(noteId)
 
   return QUERY_RESULT
 }
 
-console.log(getNoteContent(1)[0]['title'])
+
