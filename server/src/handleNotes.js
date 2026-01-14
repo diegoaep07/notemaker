@@ -22,4 +22,7 @@ export const getNoteContent = (noteId) => {
   return QUERY_RESULT
 }
 
-
+export const getAll = () => {
+  const GET_ALL = db.prepare('SELECT noteId, title FROM Notes;')
+  return GET_ALL.all()
+}
