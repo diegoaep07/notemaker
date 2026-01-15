@@ -26,3 +26,8 @@ export const getAll = () => {
   const GET_ALL = db.prepare('SELECT noteId, title FROM Notes;')
   return GET_ALL.all()
 }
+
+export const editNote = (noteId, newTitle, newBody) => {
+  const EDIT = db.prepare(`UPDATE Notes SET title=${newTitle}, body=${newBody} WHERE noteId=${noteId}`)
+  EDIT.run()
+}
