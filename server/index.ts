@@ -1,7 +1,7 @@
 import path from 'node:path'
 import express from 'express'
 import { env } from 'node:process'
-import { createNewNote, deleteNote, getNoteContent, getAll, editNote } from './src/handleNotes.js'
+import { createNewNote, deleteNote, getNoteContent, getAll, editNote } from './src/handleNotes.ts'
 
 const app = express()
 
