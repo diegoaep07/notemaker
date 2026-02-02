@@ -5,17 +5,17 @@ import { DatabaseSync } from 'node:sqlite'
 
 const db = new DatabaseSync(env.DB_DIRNAME)
 
-export const createNewNote = ( title, body ) => {
+export const createNewNote = ( title: string, body: string ) => {
   const INSERT_NOTE = db.prepare(`INSERT INTO Notes (title, body) VALUES (?, ?)`)
   INSERT_NOTE.run(title, body)
 }
 
-export const deleteNote = (noteId) => {
+export const deleteNote = (noteId: number) => {
   const DELETE_NOTE = db.prepare(`DELETE FROM Notes WHERE noteId=?`)
   DELETE_NOTE.run(noteId)
 }
 
-export const getNoteContent = (noteId) => {
+export const getNoteContent = (noteId: number) => {
   const GET_NOTE_CONTENT = db.prepare('SELECT title, body FROM Notes WHERE noteId=?')
   const QUERY_RESULT = GET_NOTE_CONTENT.all(noteId)
 
@@ -27,7 +27,7 @@ export const getAll = () => {
   return GET_ALL.all()
 }
 
-export const editNote = (noteId, newTitle, newBody) => {
+export const editNote = (noteId: number, newTitle: string, newBody: string) => {
   const EDIT = db.prepare(`UPDATE Notes SET title=${newTitle}, body=${newBody} WHERE noteId=${noteId}`)
   EDIT.run()
 }
